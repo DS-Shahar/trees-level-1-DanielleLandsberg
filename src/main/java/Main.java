@@ -212,4 +212,32 @@ return ex21(t.getLeft())&&ex21(t.getRight());
      
 }
 }
-	    
+
+
+
+//////////////////////////////////test fix
+import java.util.*;
+public class Main
+{
+    public static int count(BinNode<Integer> t) {
+        if(t==null) {
+            return 0;
+        }
+        if(isLeaf(t)) {
+            return 0;
+        }
+        if(!t.hasRight()) {
+            if(isPrime(t.getLeft().getValue()))
+            return count(t.getLeft())+1;
+        }
+         if(!t.hasLeft()) {
+            if(isPrime(t.getRight().getValue()))
+            return count(t.getRight())+1;
+        }
+        
+        if(isPrime(t.getRight().getValue()+t.getLeft().getValue())) {
+            return 1+count(t.getLeft())+count(t.getRight()); 
+        }
+        return count(t.getLeft())+count(t.getRight());
+    }
+}
